@@ -1,9 +1,11 @@
-###########################################################################
-#                                                                         #
-# Copyright (c) 2014 Romain Mueller                                       #
-# Distributed under the GNU GPL v2. For full terms see the file LICENSE.  #
-#                                                                         #
-###########################################################################
+################################################################################
+#                                                                              #
+# Copyright (c) 2014 Romain Mueller                                            #
+#                                                                              #
+# Distributed under the GNU GPL v2. For full terms see the file LICENSE.       #
+#                                                                              #
+################################################################################
+
 import pygame, copy, random
 
 # some constants
