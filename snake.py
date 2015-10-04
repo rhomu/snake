@@ -6,7 +6,7 @@
 #                                                                              #
 ################################################################################
 
-import pygame, copy, random
+import pygame, copy, random, datetime, time
 
 # some constants
 up, left, down, right, none = 0, 1, 2, 3, -1
@@ -136,12 +136,14 @@ class game:
   def __init__(self):
     pygame.init()
     pygame.mouse.set_visible(False)
-    self.size = self.width, self.height = 1360, 768
+    self.size = self.width, self.height = 1024, 608
     self.screen = pygame.display.set_mode(self.size, 
-                                          pygame.FULLSCREEN)
+                                          pygame.HWSURFACE | 
+                                          pygame.DOUBLEBUF)
     self.font  = pygame.font.SysFont('Helvetica', 20)
     self.text  = self.font.render('HIGHSCORE: ', True, (75, 75, 75))
     self.text2 = self.font.render('CURRENT: ', True, (75, 75, 75))
+    self.bkg_color = (183, 223, 160)
     self.clock = pygame.time.Clock()
     self.snakes = []
     self.tree = tree()
@@ -166,7 +168,6 @@ class game:
 
   def run(self):
     running = True
-    time = 0
     highscore = 0
     hs_color = [ 75, 75, 75 ]
 
@@ -179,6 +180,9 @@ class game:
         if event.type == pygame.QUIT:
           running = False
         if event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_l:
+            stamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d.%H%M%S')
+            pygame.image.save(self.screen, "screenshot"+stamp+".jpeg")
           # esc
           if event.key == pygame.K_ESCAPE:
             running = False
@@ -206,7 +210,7 @@ class game:
       self.tree.move(self)
 
       # drawing
-      self.screen.fill([183, 223, 160])
+      self.screen.fill(self.bkg_color)
 
       for s in self.snakes:
         s.draw(self.screen)
