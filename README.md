@@ -3,6 +3,7 @@ Minimal snake written in python
 Features
 --------
 Play with up to two friends (with small hands) and try to beat each others high-score!
+
 Controls:
 - Player 1: directional keys
 - Player 2: wasd
